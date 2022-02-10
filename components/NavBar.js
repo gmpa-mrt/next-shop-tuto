@@ -1,9 +1,26 @@
 import Link from "next/link";
-import {useEffect, useState} from "react";
+import {useUser} from "../hooks/user";
 import {fetchJson} from "../lib/api";
 
 function NavBar() {
-    const [user, setUser] = useState();
+
+/*    const query = useQuery('user', async () => {
+        try {
+            return await fetchJson('api/user')
+        } catch (err) {
+            return undefined;
+        }
+    }, {
+        cacheTime: Infinity,
+        staleTime: 30_000 //ms
+    })*/
+
+   // const user = query.data
+
+/*
+Without ReactQuery
+
+  const [user, setUser] = useState();
     useEffect(() => {
         (async () => {
             try {
@@ -14,10 +31,15 @@ function NavBar() {
             }
         })()
     }, []);
+*/
+
+
+    const user = useUser();
+
 
     const handleLogout = async () => {
         await fetchJson(`api/logout`)
-        setUser(undefined)
+     //   setUser(undefined)
     }
 
     return (
